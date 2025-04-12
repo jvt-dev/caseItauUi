@@ -1,0 +1,11 @@
+.app-header,
+.header,
+.navbar {
+  background-color: #7e7e7ec9;
+  color: white;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: white;
+}

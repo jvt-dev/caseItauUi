@@ -1,0 +1,11 @@
+<aside class="app-sidebar sidebar" [ngClass]="{ 'collapsed': isCollapsed }">
+  <button class="sidebar-toggle" (click)="toggle()">
+    <i *ngIf="isCollapsed" class="fas fa-chevron-left"></i>
+    <i *ngIf="!isCollapsed" class="fas fa-chevron-left"></i>
+  </button>
+  <nav class="nav flex-column">
+    <a class="nav-link" routerLink="/fundos">Fundos</a>
+    <a class="nav-link" routerLink="/usuarios">Usuários</a>
+    <a class="nav-link" routerLink="/configuracoes">Configurações</a>
+  </nav>
+</aside>

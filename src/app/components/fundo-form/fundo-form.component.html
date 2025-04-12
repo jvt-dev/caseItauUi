@@ -1,0 +1,80 @@
+<div class="container form-wrapper mt-4">
+  <h2>
+    {{ isReadOnly ? 'Detalhes do Fundo' : isEditMode ? 'Editar Fundo' : 'Novo Fundo' }}
+  </h2>
+
+  <form [formGroup]="fundoForm" (ngSubmit)="salvar()" class="mt-3">
+
+    <div class="mb-3">
+      <label for="codigo" class="form-label">Código</label>
+      <input id="codigo" type="text" class="form-control" formControlName="codigo" [readonly]="isEditMode || isReadOnly" />
+    </div>
+
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome</label>
+      <input id="nome" type="text" class="form-control" formControlName="nome" [readonly]="isReadOnly" />
+    </div>
+
+    <div class="mb-3">
+      <label for="cnpj" class="form-label">CNPJ</label>
+      <input id="cnpj" type="text" class="form-control" formControlName="cnpj" [readonly]="isReadOnly" mask="00.000.000/0000-00" [dropSpecialCharacters]="true"/>
+    </div>
+    <div *ngIf="fundoForm.get('cnpj')?.hasError('invalidCnpj') && fundoForm.get('cnpj')?.touched" class="text-danger">
+      CNPJ inválido.
+    </div>
+
+    <div class="mb-3">
+      <label for="patrimonio" class="form-label">Patrimônio</label>
+      <input id="patrimonio" type="text" class="form-control" formControlName="patrimonio" [readonly]="isReadOnly" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+    </div>
+
+    <div *ngIf="isEditMode && !isReadOnly" class="mb-3">
+      <button type="button" class="btn btn-outline-warning btn-sm" (click)="exibirCampoMovimentar = !exibirCampoMovimentar">
+        Movimentar Patrimônio
+      </button>
+
+      <div *ngIf="exibirCampoMovimentar" class="mt-2">
+        <input type="text" class="form-control input-left-aligned" [formControl]="novoValorPatrimonioControl" placeholder="Novo valor" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+
+        <button
+          type="button"
+          class="btn btn-success btn-sm mt-2"
+          (click)="movimentar()"
+          [disabled]="!novoValorPatrimonioControl.valid"
+        >
+          Atualizar
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-secondary btn-sm mt-2 ms-2"
+          (click)="exibirCampoMovimentar = false"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="codigoTipo" class="form-label">Tipo</label>
+      <input id="codigoTipo" type="number" class="form-control" formControlName="codigoTipo" [readonly]="isReadOnly" />
+    </div>
+
+    <div class="mt-3">
+      <button *ngIf="!isReadOnly && !isEditMode" type="submit" class="btn btn-success" [disabled]="fundoForm.invalid">
+        Salvar
+      </button>
+
+      <button *ngIf="isReadOnly" type="button" (click)="habilitarEdicao()" class="btn btn-warning">
+        Editar
+      </button>
+
+      <button *ngIf="isEditMode" type="submit" class="btn btn-success" [disabled]="fundoForm.invalid">
+        Atualizar
+      </button>
+
+      <a routerLink="/fundos" class="btn btn-secondary ms-2">Voltar</a>
+    </div>
+
+  </form>
+</div>

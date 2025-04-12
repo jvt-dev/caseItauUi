@@ -1,0 +1,130 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .app-container {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .app-content {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-left: 250px;
+    transition: margin-left 0.3s ease;
+  }  
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  width: 100%;
+}
+
+.main-content {
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+  }  
+
+.app-sidebar {
+    width: 250px; 
+    background-color: #343a40;
+    color: white;
+    padding-top: 20px;
+    position: fixed;
+    height: 100vh;
+    transition: width 0.3s ease;
+  }
+
+.app-sidebar .nav-link {
+  color: white;
+  padding: 10px 20px;
+  display: block;
+  transition: background-color 0.3s;
+}
+
+.app-sidebar .nav-link:hover {
+  background-color: #495057;
+}
+
+
+.sidebar-toggle {
+  position: absolute;
+  top: 20px;
+  right: -30px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1050;
+}
+
+.sidebar-toggle i {
+  transition: transform 0.3s ease;
+}
+
+.app-sidebar.collapsed .sidebar-toggle i {
+  transform: rotate(180deg);
+}
+
+.app-sidebar.collapsed .nav-link {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .app-sidebar {
+    display: none;
+  }
+
+  .app-content {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+.app-container.sidebar-collapsed .app-content {
+    margin-left: 80px;
+  }
+  
+  .navbar-brand {
+    margin-left: 20px;
+  }
+  
+  .form-wrapper {
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .container {
+    max-width: 100%;
+  }
+
+
+  input[formcontrolname="patrimonio"] {
+    text-align: left !important;
+  }
+  
+  .input-left-aligned {
+    text-align: left !important;
+  }
+
+.logo-itau {
+    height: 40px;
+    width: auto;  
+    margin-right: 10px; 
+  }
+  

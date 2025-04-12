@@ -1,0 +1,55 @@
+.sidebar {
+    height: 100vh;
+    background-color: #343a40;
+    color: white;
+    padding-top: 20px;
+    transition: all 0.3s ease;
+    width: 250px; 
+    position: fixed; 
+  }
+  
+  .app-sidebar.collapsed {
+    width: 80px;
+  }
+  
+  .sidebar .nav-link {
+    color: white;
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 0.3s;
+  }
+  
+  .sidebar .nav-link:hover {
+    background-color: #495057;
+  }
+  
+  .sidebar-toggle {
+    position: absolute;
+    top: 300px; 
+    right: 0px; 
+    background: transparent;
+    border: none;
+    color: rgba(0, 0, 0, 0.534);
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1050;
+  }
+  
+  .sidebar-toggle i {
+    transition: transform 0.3s ease;
+  }
+  
+  .app-sidebar.collapsed .sidebar-toggle i {
+    transform: rotate(180deg);
+  }
+  
+  .app-sidebar.collapsed .nav-link {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .sidebar {
+      display: none;
+    }
+  }
+  

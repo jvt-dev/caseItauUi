@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <h2>Lista de Fundos</h2>
+
+  <div *ngIf="isLoading" class="alert alert-info">
+    Carregando fundos...
+  </div>
+
+  <div *ngIf="!isLoading && fundos.length === 0" class="alert alert-warning">
+    Nenhum fundo encontrado.
+  </div>
+
+  <table *ngIf="!isLoading && fundos.length > 0" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>CNPJ</th>
+        <th>Patrimônio</th>
+        <th>Código Tipo</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fundo of fundos">
+        <td>{{ fundo.codigo }}</td>
+        <td>{{ fundo.nome }}</td>
+        <td>{{ fundo.cnpj }}</td>
+        <td>{{ fundo.patrimonio | currency:'BRL' }}</td>
+        <td>{{ fundo.codigoTipo }}</td>
+        <td>
+          <a class="btn btn-info btn-sm" [routerLink]="['/fundos/detalhes', fundo.codigo]" class="btn btn-info btn-sm me-1">Ver Detalhes</a>
+          <a [routerLink]="['/fundos/editar', fundo.codigo]" class="btn btn-sm btn-primary">Editar</a>
+          <button class="btn btn-sm btn-danger ms-1" (click)="deletar(fundo.codigo)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a routerLink="/fundos/novo" class="btn btn-success mt-3">Novo Fundo</a>
+</div>
