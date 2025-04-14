@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { NotImplementedComponent } from './not-implemented.component';
 
 describe('NotImplementedComponent', () => {
@@ -8,7 +8,8 @@ describe('NotImplementedComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotImplementedComponent ]
+      declarations: [ NotImplementedComponent ],
+      imports: [RouterTestingModule],
     })
     .compileComponents();
   });

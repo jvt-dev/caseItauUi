@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app.component';
 import { FundoFormComponent } from './components/fundo-form/fundo-form.component';
 import { FundoListComponent } from './components/fundo-list/fundo-list.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
