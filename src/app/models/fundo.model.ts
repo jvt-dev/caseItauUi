@@ -4,4 +4,5 @@ export interface FundoModel {
     cnpj: string;
     patrimonio?: number;
     codigoTipo: number;
+    nomeTipo: string;
   }

@@ -16,7 +16,7 @@
         <th>Nome</th>
         <th>CNPJ</th>
         <th>Patrimônio</th>
-        <th>Código Tipo</th>
+        <th>Tipo</th>
         <th>Ações</th>
       </tr>
     </thead>
@@ -26,7 +26,7 @@
         <td>{{ fundo.nome }}</td>
         <td>{{ fundo.cnpj }}</td>
         <td>{{ fundo.patrimonio | currency:'BRL' }}</td>
-        <td>{{ fundo.codigoTipo }}</td>
+        <td>{{ fundo.codigoTipo }} - {{ fundo.nomeTipo }}</td>
         <td>
           <a class="btn btn-info btn-sm" [routerLink]="['/fundos/detalhes', fundo.codigo]" class="btn btn-info btn-sm me-1">Ver Detalhes</a>
           <a [routerLink]="['/fundos/editar', fundo.codigo]" class="btn btn-sm btn-primary">Editar</a>

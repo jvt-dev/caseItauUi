@@ -57,7 +57,18 @@
 
     <div class="mb-3">
       <label for="codigoTipo" class="form-label">Tipo</label>
-      <input id="codigoTipo" type="number" class="form-control" formControlName="codigoTipo" [readonly]="isReadOnly" />
+      <select *ngIf="isInsertMode || isEditMode" id="codigoTipo" formControlName="codigoTipo" class="form-control" [disabled]="isReadOnly">
+        <option value="" disabled selected>Selecione o Tipo de Fundo</option>
+        <option *ngFor="let tipo of tiposFundo" [value]="tipo.codigo">{{tipo.codigo}} - {{ tipo.nome }}</option>
+      </select>
+
+      <div *ngIf="isReadOnly">
+        <input type="text" class="form-control" [value]="getTipoFundoNome()" [disabled]="isReadOnly" />
+      </div>
+
+      <div *ngIf="fundoForm.get('codigoTipo')?.invalid && fundoForm.get('codigoTipo')?.touched" class="text-danger">
+        Tipo de fundo é obrigatório.
+      </div>
     </div>
 
     <div class="mt-3">

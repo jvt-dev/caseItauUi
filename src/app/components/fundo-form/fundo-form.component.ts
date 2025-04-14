@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FundoService } from 'src/app/services/fundo.service';
+import { TipoFundoService } from 'src/app/services/tipo-fundo.service';
 import { FundoModel } from 'src/app/models/fundo.model';
+import { TipoFundoModel } from 'src/app/models/tipo-fundo.model';
 
 @Component({
   selector: 'app-fundo-form',
@@ -17,12 +19,14 @@ export class FundoFormComponent implements OnInit {
   novoValorPatrimonioControl = new FormControl(null, Validators.required);
   formMode: string = '';
   codigo!: string;
+  tiposFundo: TipoFundoModel[] = []; 
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private fundoService: FundoService
+    private fundoService: FundoService,
+    private tipoFundoService: TipoFundoService
   ) {}
 
   ngOnInit(): void {
@@ -53,7 +57,12 @@ export class FundoFormComponent implements OnInit {
       cnpj: [{ value: '', disabled: this.isReadOnly }, [Validators.required, this.cnpjValidator.bind(this)]],
       patrimonio: [{ value: 0, disabled: !this.isInsertMode }, Validators.required],
       codigoTipo: [{ value: '', disabled: this.isReadOnly }, Validators.required],
+      nomeTipo: [{ value: '', disabled: this.isReadOnly }]
     });
+
+    this.tipoFundoService.getAll().subscribe(tipos => {
+      this.tiposFundo = tipos;
+    })
     
     if (codigo) {
       this.fundoService.getByCodigo(codigo).subscribe(fundo => {
@@ -67,7 +76,7 @@ export class FundoFormComponent implements OnInit {
     if (this.fundoForm.invalid || this.isReadOnly) return;
 
     const fundo: FundoModel = this.fundoForm.getRawValue();
-
+    fundo.codigoTipo = Number(fundo.codigoTipo);
     if (this.isEditMode) {
       this.fundoService.update(this.codigo, fundo).subscribe(() => this.router.navigate(['/fundos']));
     } else {
@@ -112,5 +121,12 @@ export class FundoFormComponent implements OnInit {
     }
     
     return null;
+  }
+
+  getTipoFundoNome(): string {
+    const codigoTipo = this.fundoForm.get('codigoTipo')?.value;
+    const tipoFundo = this.fundoForm.get('nomeTipo')?.value;
+
+    return tipoFundo ? `${codigoTipo} - ${tipoFundo}` : '';
   }
 }
