@@ -41,7 +41,7 @@ html, body {
 
 .app-sidebar {
     width: 250px; 
-    background-color: #343a40;
+    background-color: #33348e;
     color: white;
     padding-top: 20px;
     position: fixed;
@@ -57,7 +57,7 @@ html, body {
 }
 
 .app-sidebar .nav-link:hover {
-  background-color: #495057;
+  background-color: #33348e;
 }
 
 

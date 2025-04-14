@@ -1,6 +1,6 @@
 .sidebar {
     height: 100vh;
-    background-color: #343a40;
+    background-color: #33348e;
     color: white;
     padding-top: 20px;
     transition: all 0.3s ease;
@@ -20,7 +20,7 @@
   }
   
   .sidebar .nav-link:hover {
-    background-color: #495057;
+    background-color: #133e69;
   }
   
   .sidebar-toggle {
